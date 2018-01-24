@@ -1100,6 +1100,10 @@
       } else {
         // record the original position when touch starts
         slider.touch.originalPos = el.position();
+		      
+        var chromePointerEvents = typeof PointerEvent === 'function';
+        if (chromePointerEvents) { if (orig.pointerId === undefined) { return; } }
+	      
         var orig = e.originalEvent,
         touchPoints = (typeof orig.changedTouches !== 'undefined') ? orig.changedTouches : [orig];
         // record the starting touch x, y coordinates
@@ -1185,8 +1189,8 @@
       slider.viewport.unbind('touchmove MSPointerMove pointermove', onTouchMove);
       //enable slider controls as soon as user stops interacing with slides
       slider.controls.el.removeClass('disabled');
+          
       var orig    = e.originalEvent,
-      chromePointerEvents = typeof PointerEvent === 'function'; if (chromePointerEvents) { if (orig.pointerId === undefined) { return; } },	  
       touchPoints = (typeof orig.changedTouches !== 'undefined') ? orig.changedTouches : [orig],
       value       = 0,
       distance    = 0;
