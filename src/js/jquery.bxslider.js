@@ -1186,6 +1186,7 @@
       //enable slider controls as soon as user stops interacing with slides
       slider.controls.el.removeClass('disabled');
       var orig    = e.originalEvent,
+      chromePointerEvents = typeof PointerEvent === 'function'; if (chromePointerEvents) { if (orig.pointerId === undefined) { return; } },	  
       touchPoints = (typeof orig.changedTouches !== 'undefined') ? orig.changedTouches : [orig],
       value       = 0,
       distance    = 0;
